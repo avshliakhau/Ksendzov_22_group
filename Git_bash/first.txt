@@ -1,0 +1,4 @@
+1/ first string
+2/ second sring
+3/ ***
+4/ ++++

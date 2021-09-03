@@ -1,0 +1,53 @@
+Group_22_30.08.2021_win-git_bash_Terminal_Linux
+Примерно 45.30 минута = как делать и оформлять ДЗ 
+22_QA_Group_Channel, [31.08.21 00:05]
+
+ДЗ_#1 
+Linux terminal (GitBash) commands
+
+   1) Посмотреть где я:				pwd
+   2) Создать папку:				mkdir foldername
+   3) Зайти в папку:				cd foldername
+   4) Создать 3 папки:				mkdir foldername1 foldername2 foldername3
+   5) Зайти в любую папку:			cd foldername2
+   6) Создать 5 файлов (3 txt, 2 json):		touch 1.txt 11.txt 111.txt 1.json 11.json
+   7) Создать 3 папки:				mkdir foldername4.foldername5 foldername6
+   8. Вывести список содержимого папки:		ls - la (всё) или ls - l (без скрытых)
+   9) + Открыть любой txt файл:			vim filename.txt
+   10) + написать туда что-нибудь, любой текст:	" любой текст " + кнопка на клавиатуре Esc
+   11) + сохранить и выйти:			:wq 
+   12) Выйти из папки на уровень выше:		cd ..
+   13) переместить любые 2 файла,
+ которые вы создали, в любую другую папку:	mv filaname1 filename2 [абс. путь папки]
+   14) скопировать любые 2 файла,
+которые вы создали, в любую другую папку:	cp filaname1 filename2 [абс. путь папки]
+   15) Найти файл по имени:			find -name filename
+   16) просмотреть содержимое в реальном времени 
+(команда grep) изучите как она работает:	tail -f filename.log
+    ***
+   17) вывести несколько первых m строк 
+из текстового файла:				cat filename | sed -n 1,mp или head -nm filename.txt
+   18) вывести несколько (m) последних строк
+из текстового файла:				cat filename | tail -n или tail -nm filename.txt
+   19) просмотреть содержимое длинного файла 
+(команда less) изучите как она работает:	less filename либо nl filename
+   20) вывести дату и время:			date
+(вывести дату и время в файл, (только с *.txt) ):	(date >> filename)
+   
+=========
+
+Задание *
+   
+1) Отправить http запрос на сервер:		curl "http://162.55.220.72:5005/object_info_3?name=Vadim&age=32&salary=1000"
+   
+2) Написать скрипт который выполнит автоматически пункты 3, 4, 5, 6, 7, 8, 13
+
+1 вариант (скрипт "script.sh")
+   a) запуск из Bash:
+User@Comp1 MINGW64 /d
+$ . script.sh   
+   b) запуск из браузера по двойному клику (скрипт "script.sh" лежит в корне диска d)
+
+2 вариант 
+   User@Comp1 MINGW64 /d/GIT-2
+   $ mkdir G-1 G-2 G-3 ; cd G-2 ; touch 1.txt 11.txt 111.txt 1.json 11.json ; mkdir G-4 G-5 G-6 ; ls -l ; mv 1.txt 1.json "d:/GIT-2/G-3" 
