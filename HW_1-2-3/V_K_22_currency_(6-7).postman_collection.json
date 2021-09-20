@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "ca1dc9af-8222-48fa-a2f6-b3550da90d0f",
+		"name": "V_K_22_currency_(6-7)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "#6_currency",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var arr_cur = Array.from(pm.response.json());\r",
+							"console.log(\"log_#1 'Массив Array Cur'\", arr_cur);\r",
+							"var length_arr = arr_cur.length;\r",
+							"console.log(\"log_#2 'length_Array Cur = '\", arr_cur.length);\r",
+							"\r",
+							"let tok = pm.environment.get(\"token\");\r",
+							"for (var i = 0; i < arr_cur.length; i++) {\r",
+							"        let curr = arr_cur[i].Cur_ID\r",
+							"const options = {\r",
+							"                'method': 'POST',\r",
+							"                'url': 'http://162.55.220.72:5005/curr_byn',\r",
+							"                'body': {\r",
+							"                        'mode': 'formdata',\r",
+							"                        'formdata': [\r",
+							"                                {'key':'auth_token', 'value': tok},\r",
+							"                                {'key':'curr_code', 'value': curr}\r",
+							"                        ]\r",
+							"                }\r",
+							"        };\r",
+							"pm.sendRequest(options, (error, response) => {\r",
+							"        if (error) throw new Error(error);               \r",
+							"        pm.test(\"Test #2 Your test have key 'Cur_OfficialRate'\", function () {\r",
+							"                let jsonData = response.json();\r",
+							"                pm.expect(jsonData).to.have.any.keys(\"Cur_OfficialRate\");\r",
+							"                console.log(\"log_#3_Cur_OfficialRate + jsonData\", jsonData.Cur_OfficialRate, jsonData);\r",
+							"        });        \r",
+							"});\r",
+							"};\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/currency",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"currency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "#7_curr_byn_schema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"Cur_Abbreviation\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"Cur_ID\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"Cur_Name\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"Cur_OfficialRate\": {\r",
+							"      \"type\": \"number\"\r",
+							"    },\r",
+							"    \"Cur_Scale\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"Date\": {\r",
+							"      \"type\": \"string\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"Cur_Abbreviation\",\r",
+							"    \"Cur_ID\",\r",
+							"    \"Cur_Name\",\r",
+							"    \"Cur_OfficialRate\",\r",
+							"    \"Cur_Scale\",\r",
+							"    \"Date\"\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"pm.test(\"test #2 Json-scheme complies with the requirements\", function () {\r",
+							"        pm.response.to.have.jsonSchema(schema)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//var arr_cur = Array.from(pm.response.json());\r",
+							"//console.log(arr_cur);\r",
+							"//var length_arr = arr_cur.length;\r",
+							"//console.log(arr_cur.length);\r",
+							"//console.log(arr_cur[2]);\r",
+							"//\r",
+							"//var jsonData = JSON.parse(responseBody);\r",
+							"//var cur_id = [];\r",
+							"//\tfor (var i = 0; i < arr_cur.length; i++) {\r",
+							"//            //pm.environment.set(\"Cur_ID\", jsonData.Cur_ID);\r",
+							"//            cur_id.push(arr_cur[i].Cur_ID)\r",
+							"//        };\r",
+							"//console.log(cur_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "curr_code",
+							"value": "{{curr_code}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/curr_byn",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"curr_byn"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
