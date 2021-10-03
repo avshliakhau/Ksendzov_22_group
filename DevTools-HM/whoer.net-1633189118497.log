@@ -1,0 +1,8 @@
+survey.js:1 Uncaught ReferenceError: langPage is not defined
+    at survey.js:1
+(anonymous) @ survey.js:1
+(index):55 GET https://whoer.net/v2/fennec-myown 404
+checkProtected @ (index):55
+async function (async)
+checkProtected @ (index):50
+(anonymous) @ (index):41
